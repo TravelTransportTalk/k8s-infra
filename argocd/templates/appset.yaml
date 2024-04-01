@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoUrl: https://github.com/TravelTransportTalk/k8s-infra
+        repoURL: https://github.com/TravelTransportTalk/k8s-infra
         revision: HEAD
         directories:
           - path: "./*"

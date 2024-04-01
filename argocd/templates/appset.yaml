@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/TravelTransportTalk/k8s-infra
         revision: HEAD
         directories:
-          - path: "./*"
+          - path: "*"
   template:
     metadata:
       name: '{{`{{ path.basename }}`}}'

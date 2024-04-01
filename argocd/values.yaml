@@ -1,0 +1,19 @@
+argocd:
+  global:
+    domain: "argocd.infra.travel-talk.tech"
+
+  configs:
+    params:
+      server.insecure: true
+
+  server:
+    ingress:
+      enabled: false
+      ingressClassName: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      extraTls:
+        - hosts:
+          - argocd.infra.travel-talk.tech
+          secretName: travel-talk-tech-tls

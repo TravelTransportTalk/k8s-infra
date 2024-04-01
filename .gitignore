@@ -1,0 +1,2 @@
+# Ignore local dependency chart tarballs
+**/charts/

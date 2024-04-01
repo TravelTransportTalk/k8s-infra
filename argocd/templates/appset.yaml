@@ -1,0 +1,41 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: travel-talk-infra
+spec:
+  generators:
+    - git:
+        repoUrl: https://github.com/TravelTransportTalk/k8s-infra
+        revision: HEAD
+        directories:
+          - path: "./*"
+  template:
+    metadata:
+      name: '{{`{{ path.basename }}`}}'
+    spec:
+      project: default
+      source:
+        helm:
+          valueFiles:
+            - values.yaml
+        repoURL: 'https://github.com/TravelTransportTalk/k8s-infra'
+        targetRevision: HEAD
+        path: '{{`{{ path }}`}}'
+
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{`{{ path.basename }}`}}'
+
+      syncPolicy:
+      {{- if .Values.autosync }}
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: false
+      {{- end }}
+        syncOptions:
+        - CreateNamespace=true
+
+        retry:
+          limit: 3

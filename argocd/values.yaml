@@ -1,6 +1,6 @@
 argocd:
   global:
-    domain: "argocd.infra.travel-talk.tech"
+    domain: "argocd.infra.travel-talk.mkls.space"
 
   configs:
     params:
@@ -17,4 +17,4 @@ argocd:
       extraTls:
         - hosts:
             - argocd.infra.travel-talk.mkls.space
-          secretName: travel-talk-tech-tls
+          secretName: argocd-infra-travel-talk-mkls-space-tls

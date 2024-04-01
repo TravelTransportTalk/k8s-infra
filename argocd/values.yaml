@@ -13,7 +13,7 @@ argocd:
       annotations:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-        cert-manager.io/issuer: "letsencrypt-staging"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
       extraTls:
         - hosts:
             - argocd.infra.travel-talk.mkls.space

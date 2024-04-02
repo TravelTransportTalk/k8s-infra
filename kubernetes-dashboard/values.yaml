@@ -1,0 +1,23 @@
+---
+kubernetes-dashboard:
+  # Hack to bypass k8s auth but pass only
+  # OAuth2-authorized users
+  extraArgs:
+    - --enable-skip-login
+    - --enable-insecure-login
+  ingress:
+    enabled: true
+    className: nginx
+    paths:
+      - "/"
+    tls:
+      - secretName: kubernetes-dashboard-tls
+        hosts:
+          - dashboard.infra.travel-talk.mkls.space
+    annotations:
+      nginx.ingress.kubernetes.io/auth-url: 'https://$host/oauth2/auth'
+      nginx.ingress.kubernetes.io/auth-signin: 'https://$host/oauth2/start?rd=$escaped_request_uri'
+      nginx.ingress.kubernetes.io/auth-response-headers: "authorization"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - dashboard.infra.travel-talk.mkls.space

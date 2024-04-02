@@ -1,0 +1,63 @@
+---
+oauth2-proxy:
+  resources:
+    requests:
+      cpu: 200m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+  config:
+    existingSecret: "github-client-secret"
+    configFile: |
+      provider="github"
+      provider_display_name="GitHub"
+      redirect_url="https://dashboard.infra.travel-talk.mkls.space/oauth2/callback"
+      email_domains = "*"
+
+      pass_access_token = true
+      set_authorization_header = true
+      pass_user_headers = true
+      pass_authorization_header = "true"
+
+      upstreams = [ "file:///dev/null" ]
+      github_org = "TravelTransportTalk"
+    extraArgs:
+      provider: github
+
+  metrics:
+    enabled: false
+
+  ingress:
+    enabled: true
+    path: /oauth2
+    className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-buffer-size: "64k"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - dashboard.infra.travel-talk.mkls.space
+    tls:
+      - secretName: dashboard-infra-travel-talk-mkls-space-tls
+        hosts:
+          - "dashboard.infra.travel-talk.mkls.space"
+
+  sessionStorage:
+    type: redis
+    redis:
+      password: ""
+
+  redis:
+    enabled: true
+    architecture: standalone
+    master:
+      persistence:
+        enabled: false
+      resources:
+        requests:
+          cpu: 200m
+          memory: 256Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi

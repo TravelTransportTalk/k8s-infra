@@ -21,3 +21,6 @@ kubernetes-dashboard:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
       - dashboard.infra.travel-talk.mkls.space
+
+  metricsScrapper:
+    enabled: true

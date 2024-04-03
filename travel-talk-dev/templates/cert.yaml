@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "{{ .Release.Name }}-cert"
+spec:
+  secretName: "pg-letsencrypt-tls"
+  duration: 216h # 9d
+  renewBefore: 36h # 1.5d
+  isCA: false
+  usages:
+    - digital signature
+    - key encipherment
+  dnsNames:
+    {{- toYaml .Values.certDNSNames | nindent 4 }}
+
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

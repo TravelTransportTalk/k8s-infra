@@ -1,0 +1,25 @@
+---
+certDNSNames:
+  - pg-dev.infra.travel-talk.mkls.space
+
+postgresql:
+  fullnameOverride: travel-talk-postgres
+  tls:
+    enabled: true
+    certificatesSecret: "pg-letsencrypt-tls"
+    certFilename: "tls.crt"
+    certKeyFilename: "tls.key"
+  auth:
+    username: developer
+    database: travel_talk
+    existingSecret: postgres-secret
+  primary:
+    persistence:
+      storageClass: csi-ceph-hdd-gz1
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 1024Mi

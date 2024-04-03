@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+kind: Application
+name: pg-dev
+version: 15.0.0
+
+dependencies:
+  - name: postgresql
+    repository: "https://charts.bitnami.com/bitnami"
+    version: 15.2.1

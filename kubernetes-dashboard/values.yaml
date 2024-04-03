@@ -22,5 +22,5 @@ kubernetes-dashboard:
     hosts:
       - dashboard.infra.travel-talk.mkls.space
 
-  metricsScrapper:
+  metricsScraper:
     enabled: true

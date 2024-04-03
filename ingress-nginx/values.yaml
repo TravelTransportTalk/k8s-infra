@@ -3,7 +3,7 @@
 ingress-nginx:
   tcp:
     9000: "pg-dev/pg-dev-instance-postgresql:5432"
-    9001: "travel-talk-postgres/travel-talk-dev:5432"
+    9001: "travel-talk-postgres-pooler/travel-talk-dev:5432"
 
   controller:
     allowSnippetAnnotations: true

@@ -1,8 +1,4 @@
 ---
-# stub
 ingress-nginx:
-  tcp:
-    9000: "travel-talk-dev/travel-talk-postgres:5432"
-
   controller:
     allowSnippetAnnotations: true

@@ -18,8 +18,9 @@ postgresql:
       storageClass: csi-ceph-hdd-gz1
 
     configuration: |
+      listen_addresses = '*'
       tcp_keepalives_idle = 10
-      tcp_keepalives_interval = 5
+      tcp_keepalives_interval = 30
       tcp_keepalives_count = 5
 
     resources:
